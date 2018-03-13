@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class MovieList {
 
-    List<Movie> movies = new ArrayList<>();
+private    ArrayList<Movie> movies = new ArrayList<>();
 
     public void addMovie(Movie movie) {
         movies.add(movie);
@@ -27,6 +27,12 @@ public class MovieList {
         } else {
             System.out.println("Movie: " + title + "doesn't exist");
         }
-
     }
+        public void addCurrentMovies() {
+       movies.add(new Movie("Comedy","la foire",1992));
+       }
 }
+       // public void updateMovies();
+//}
+
+//      
