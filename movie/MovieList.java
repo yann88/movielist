@@ -1,38 +1,48 @@
-package movielist;
+
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class MovieList {
 
-private    ArrayList<Movie> movies = new ArrayList<>();
+private    ArrayList<Movie> movies;
 
-    public void addMovie(Movie movie) {
-        movies.add(movie);
-    }
-
-    public void listMovies() {
-        System.out.println("numbers of movies: " + movies.size());
-        movies.forEach(m -> System.out.println(m + "\n"));
-    }
-
-    public void removeMovie(String title) {
-        Optional<Movie> optional = movies.stream().filter(m -> m.getTitle().equals(title)).findFirst();
-        if (optional.isPresent()) {
-            Movie movie = optional.get();
-            movies.remove(movie);
-            System.out.println("removed movie: " + movie);
-        } else {
-            System.out.println("Movie: " + title + "doesn't exist");
-        }
-    }
-        public void addCurrentMovies() {
-       movies.add(new Movie("Comedy","la foire",1992));
-       }
+public MovieList(){
+   ArrayList<Movie> movies=new ArrayList<>();
+   movies.add(new Movie("drama","Citizen Kane",1998,"HIGH","SEEN"));
+   movies.add(new Movie("drama","Casablanca",1990,"MEDIUM","UNSEEN"));
+   movies.add(new Movie( "drama","The Godfather",1995,"HIGH","SEEN"));
+    
 }
-       // public void updateMovies();
-//}
 
-//      
+	public ArrayList<Movie> getMovies() {
+		return movies;
+	}
+
+	
+	public Movie getMovie() {
+		Random r = new Random();
+		return movies.get(r.nextInt(movies.size()));
+	}
+
+	
+	public boolean addMovie(Movie newMovie) {
+		if (newMovie.length() > 0 && !movies.contains(newMovie)) {
+			return movies.add(newMovie);
+		}
+		return false;
+	}
+
+	
+	public boolean removeMovie(Movie movie) {
+		return movies.remove(movie);
+	}
+        
+	
+	public boolean removeAllMovie() {
+		movies = new ArrayList<>();
+		return movies.isEmpty();
+	}
+}
+
+    

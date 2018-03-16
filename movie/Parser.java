@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package movielist;
+
 
 import java.util.Calendar;
 import java.util.Scanner;
+
 
 /**
  *
@@ -56,27 +57,16 @@ public class Parser {
             }}
             
             
-            
-
-
-  
-
-    
-
-
 private  void enterNewMovie() {
         System.out.println("please enter movies' title");
         String genre=input.next();
         String title = input.next();
         Calendar calendar = Calendar.getInstance();
        int year = calendar.get(Calendar.YEAR);       
-       
        movielist.addMovie(new Movie(genre,title,year));
        
     }
-    
-    
-    private  void showMenu() {
+private  void showMenu() {
         System.out.println();
         System.out.println("********************************************");
         System.out.println("Please select one of the following options: ");
@@ -91,5 +81,8 @@ private  void enterNewMovie() {
         System.out.println();
     }
 }
+    
+    
+    
     
 
