@@ -1,48 +1,63 @@
-
-
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 
 public class MovieList {
+    private List<Movie> list = new ArrayList<>();
 
-private    ArrayList<Movie> movies;
+    public List<Movie> getList() {
+        return list;
+    }
 
-public MovieList(){
-   ArrayList<Movie> movies=new ArrayList<>();
-   movies.add(new Movie("drama","Citizen Kane",1998,"HIGH","SEEN"));
-   movies.add(new Movie("drama","Casablanca",1990,"MEDIUM","UNSEEN"));
-   movies.add(new Movie( "drama","The Godfather",1995,"HIGH","SEEN"));
-    
+    public void setList(List<Movie> list) {
+        this.list = list;
+    }
+
+    public void addMovie(Movie movie) {
+        list.add(movie);
+    }
+
+    public void removeMovie(Movie movie) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(movie)) {
+                list.remove(i);
+            }
+        }
+    }
+
+    public Movie getMovie(int id) {
+        if (id <= list.size()) {
+            return list.get(id);
+        } else {
+            return null;
+        }
+    }
+
+    public int getSize() {
+        return list.size();
+    }
+
+
+    public void removeWatched() {
+        List<Movie> watched = new ArrayList<>();
+        for (Movie movie : list) {
+            if (!movie.isSeen()) {
+                watched.add(movie);
+            }
+        }
+
+        for (Movie movie : watched) {
+            watched.remove(movie);
+        }
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Movie movie : list) {
+            sb.append(movie.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+
 }
-
-	public ArrayList<Movie> getMovies() {
-		return movies;
-	}
-
-	
-	public Movie getMovie() {
-		Random r = new Random();
-		return movies.get(r.nextInt(movies.size()));
-	}
-
-	
-	public boolean addMovie(Movie newMovie) {
-		if (newMovie.length() > 0 && !movies.contains(newMovie)) {
-			return movies.add(newMovie);
-		}
-		return false;
-	}
-
-	
-	public boolean removeMovie(Movie movie) {
-		return movies.remove(movie);
-	}
-        
-	
-	public boolean removeAllMovie() {
-		movies = new ArrayList<>();
-		return movies.isEmpty();
-	}
-}
-
-    

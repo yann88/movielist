@@ -1,94 +1,75 @@
-import java.util.HashSet;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.Date;
 
-
-
-/**
- *
- * @author yannick
- */
 public class Movie {
+    private boolean seen;
+    private String name;
+    private String genre;
+    private Date date;
 
-    private String genreID;
-    private String title;
-    private int year;
-    private String rating;
-    private String status;
-
-    public Movie(String genreID, String title, int year,String rating,String Status) {
-        if (year < 1900 || year > 2018) {
-            throw new IllegalArgumentException(
-                    "Year " + year + " out of range. Must be in the range 1900 ... 2018");
-        }
-
-        this.genreID = genreID;
-        this.title = title;
-        this.year = year;
-        this.rating = rating;
-        this.status = status;
+    public Movie(String name,String genre) {
+        this(name,genre, null);
     }
 
-    //TODO add set methods if needed
-    public String getGenreID() {
-        return genreID;
-    }
-    
-    public void setGenre(String genreID) {
-        this.genreID = genreID;
+    public Movie(String name,String genre,Date date) {
+        this(name, genre, date, true);
+
     }
 
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setTitle(String title) {
-       this.title = title;
+
+    public Movie(String name, String genre, Date date, boolean seen) {
+        this.seen = seen;
+        this.name = name;
+        this.genre = genre;
+        this.date = date;
+
+
     }
 
-    public int getYear() {
-        return year;
-    }
-    
-    public void setYear(int year) {
-       this.year = year;
-    }
-    public String getRating(){
-        return rating;
-    }
-    
-    public void setRating(String rating) {
-     this.rating = rating;
-    }
-    public String getStatus(){
-        return status;
-    }
 
-    public String getMovie() {
-        return genreID + " " + title + " " + year + " " + rating + " " + status;
-    }
-    
-    
+
+
+    @Override
     public String toString() {
-        return "Genre:" + genreID + "Name: " + title + " joined in year" + year +"Rating" + rating + "status" + status;
+        StringBuilder sb = new StringBuilder();
+        if (isSeen()) {
+            sb.append("[(*)");
+        } else {
+            sb.append("[ ");
+        }
+        sb.append(genre);
+        sb.append(name);
+        if (date != null) {
+            sb.append("(date)");
+        }
+        sb.append("  ]");
+        return sb.toString();
     }
 
-    
-
+    public boolean isSeen() {
+        if (seen == true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
-    // public int getRating() {
-    //   return rating;
-    //}
-    
 
+    public void toggleState() {
+        seen = !seen;
+    }
 
-    
+    public String getName() {
+        return name;
+    }
 
-    //
-    //}
-    
+    public String getGenre() {
+        return genre;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+}
+
